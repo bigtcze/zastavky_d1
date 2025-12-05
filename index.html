@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Kompletní průvodce benzínkami a odpočívadly na dálnici D1 pro rodiny s dětmi. Zjistěte, kde jsou přebalovací pulty, dětské koutky a restaurace.">
+        content="Průvodce benzínkami a odpočívadly na dálnici D1 pro rodiny s dětmi. Zjistěte, kde jsou přebalovací pulty a možnosti stravování.">
     <meta name="keywords" content="D1, dálnice, benzínky, odpočívadla, přebalovací pult, rodiny s dětmi">
     <title>Zástavky D1 - Průvodce benzínkami pro rodiny s dětmi</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,7 +18,8 @@
 <body>
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo"><span class="logo-icon">🛣️</span><span class="logo-text">Zástavky D1</span></a>
+            <a href="#" class="logo"><img src="favicon.svg" alt="Logo" class="logo-icon"><span
+                    class="logo-text">Zástavky D1</span></a>
             <div class="nav-right">
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#smer-brno">Směr Brno</a></li>
@@ -54,7 +56,7 @@
         </div>
         <div class="hero-content">
             <h1 class="hero-title"><span class="title-accent">Zástavky</span> na D1</h1>
-            <p class="hero-subtitle">Kompletní průvodce benzínkami a odpočívadly pro rodiny s dětmi</p>
+            <p class="hero-subtitle">Průvodce benzínkami a odpočívadly pro rodiny s dětmi</p>
             <div class="hero-stats">
                 <div class="stat"><span class="stat-number">248</span><span class="stat-label">km dálnice</span></div>
                 <div class="stat"><span class="stat-number">40+</span><span class="stat-label">zastávek</span></div>
@@ -71,328 +73,405 @@
         </div>
     </header>
 
-    <section class="filter-section">
+    <section class="filter-section" id="filter">
         <div class="container">
             <div class="filter-container">
-                <h3 class="filter-title">Filtrovat:</h3>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">Vše</button>
-                    <button class="filter-btn" data-filter="prebalovaci">🍼 Přebalovací</button>
-                    <button class="filter-btn" data-filter="mekac">🍔 McDonald's</button>
-                    <button class="filter-btn" data-filter="kfc">🍗 KFC</button>
-                    <button class="filter-btn" data-filter="shell">⛽ Shell</button>
-                    <button class="filter-btn" data-filter="omv">⛽ OMV</button>
-                    <button class="filter-btn" data-filter="orlen">⛽ Orlen</button>
-                    <button class="filter-btn" data-filter="mol">⛽ Mol</button>
+                <div class="filter-header">
+                    <h3 class="filter-title">🔍 Filtrovat</h3>
+                    <button class="filter-toggle" id="filterToggle" aria-label="Zobrazit filtry">
+                        <span class="toggle-text">Zobrazit</span>
+                        <span class="toggle-icon">▼</span>
+                    </button>
+                </div>
+                <div class="filter-content" id="filterContent">
+                    <div class="filter-row">
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">Vše</button>
+                            <button class="filter-btn" data-filter="prebalovaci">🍼 Přebalovací pult</button>
+                            <button class="filter-btn" data-filter="mekac">🍔 McDonald's</button>
+                            <button class="filter-btn" data-filter="kfc">🍗 KFC</button>
+                            <button class="filter-btn" data-filter="shell">⛽ Shell</button>
+                            <button class="filter-btn" data-filter="omv">⛽ OMV</button>
+                            <button class="filter-btn" data-filter="orlen">⛽ Orlen</button>
+                            <button class="filter-btn" data-filter="mol">⛽ Mol</button>
+                        </div>
+                    </div>
+                    <div class="location-row">
+                        <button class="location-btn" id="locationBtn">
+                            <span class="location-icon">📍</span>
+                            <span class="location-text">Moje poloha</span>
+                        </button>
+                        <div class="location-status" id="locationStatus"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="stops-section" id="smer-brno">
+    <section class="stops-sections-container" id="stops">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title"><span class="direction-badge direction-brno">→</span>Směr Brno</h2>
-                <p class="section-subtitle">Z Prahy na Moravu • 248 km</p>
-            </div>
-            <div class="stops-grid" id="stopsBrno">
-                <article class="stop-card" data-tags="orlen mekac">
-                    <div class="stop-km"><span class="km-number">5</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Orlen + McDonald's</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Orlen</span><span class="tag tag-food">🍔
-                                McDonald's</span></div>
+            <div class="stops-wrapper">
+                <div class="stops-section" id="smer-brno">
+                    <div class="section-header">
+                        <h2 class="section-title"><span class="direction-badge direction-brno">→</span>Směr Brno
+                        </h2>
+                        <p class="section-subtitle">Z Prahy na Moravu • 248 km</p>
                     </div>
-                </article>
-                <article class="stop-card" data-tags="mol">
-                    <div class="stop-km"><span class="km-number">32</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Mol Bělčice</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Mol</span></div>
+                    <div class="stops-grid" id="stopsBrno">
+                        <article class="stop-card" data-tags="orlen mekac">
+                            <div class="stop-km"><span class="km-number">5</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Orlen + McDonald's</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Orlen</span><span
+                                        class="tag tag-food">🍔
+                                        McDonald's</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="mol">
+                            <div class="stop-km"><span class="km-number">32</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Mol Bělčice</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Mol</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="shell">
+                            <div class="stop-km"><span class="km-number">44</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Shell Všechlapy</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Shell</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="orlen">
+                            <div class="stop-km"><span class="km-number">52</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Orlen</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Orlen</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card featured" data-tags="mekac kfc prebalovaci">
+                            <div class="stop-km"><span class="km-number">65</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Exit Ledeč - Velký komplex</h3>
+                                <p class="stop-description"><strong>NOVÉ KFC</strong> - čisto, ideální na
+                                    přebalování!
+                                </p>
+                                <div class="stop-tags"><span class="tag tag-food">🍔 McDonald's</span><span
+                                        class="tag tag-food">🍗 KFC</span><span class="tag tag-food">🥖
+                                        Boulevard</span><span class="tag tag-food">🍔 Burger King</span><span
+                                        class="tag tag-baby">🍼 Přebalovací
+                                        pult</span></div>
+                                <div class="stop-note success"><span class="note-icon">✓</span>Doporučujeme!
+                                    Ideální
+                                    místo pro
+                                    delší zastávku s dětmi.</div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="">
+                            <div class="stop-km"><span class="km-number">89</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Motorest Humpolec</h3>
+                                <p class="stop-description">Exit Humpolec, žádná benzínka</p>
+                                <div class="stop-tags"><span class="tag tag-rest">🍽️ Motorest</span></div>
+                                <div class="stop-note warning"><span class="note-icon">!</span>Pozor: Žádná
+                                    benzínka k
+                                    dispozici.</div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="omv">
+                            <div class="stop-km"><span class="km-number">95</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">OMV</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="omv">
+                            <div class="stop-km"><span class="km-number">110</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">OMV Pávov</h3>
+                                <p class="stop-description">Krátký sjezd z dálnice do kopce</p>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="">
+                            <div class="stop-km"><span class="km-number">121</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Unicorn</h3>
+                                <p class="stop-description">Placené WC, malá benzínka</p>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Benzínka</span></div>
+                                <div class="stop-note warning"><span class="note-icon">!</span>Lépe se vyhnout -
+                                    placené
+                                    WC.
+                                </div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="shell mekac prebalovaci">
+                            <div class="stop-km"><span class="km-number">138</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Shell + McDonald's</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Shell</span><span
+                                        class="tag tag-food">🍔
+                                        McDonald's</span><span class="tag tag-baby">🍼 Malý přeb. pult</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="mol">
+                            <div class="stop-km"><span class="km-number">145</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Mol Velké Meziříčí</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Mol</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="orlen kfc prebalovaci">
+                            <div class="stop-km"><span class="km-number">166</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Devět křížů - Orlen + KFC</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Orlen</span><span
+                                        class="tag tag-food">🍗
+                                        KFC</span><span class="tag tag-baby">🍼 Přebalovací pult</span></div>
+                                <div class="stop-note info"><span class="note-icon">i</span>Přebalovací pult
+                                    malý a
+                                    nakřivo -
+                                    doporučujeme přebalit ve dvou.</div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="mol">
+                            <div class="stop-km"><span class="km-number">187</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Mol Troubsko</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Mol</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="omv">
+                            <div class="stop-km"><span class="km-number">198</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">OMV Brno Ivanovice</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card featured" data-tags="omv kfc mekac prebalovaci">
+                            <div class="stop-km"><span class="km-number">207</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">OMV Rohlenka</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span><span
+                                        class="tag tag-food">🍗
+                                        KFC</span><span class="tag tag-food">🍔 McDonald's</span><span
+                                        class="tag tag-food">🥪
+                                        Subway</span><span class="tag tag-baby">🍼 Přebalovací pult</span></div>
+                                <div class="stop-note info"><span class="note-icon">i</span>Malý přebalovací
+                                    pult na
+                                    invalidech.
+                                </div>
+                            </div>
+                        </article>
+                        <article class="stop-card featured" data-tags="shell kfc prebalovaci">
+                            <div class="stop-km"><span class="km-number">235</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Shell Slížany + KFC</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Shell</span><span
+                                        class="tag tag-food">🍗
+                                        KFC</span><span class="tag tag-baby">🍼 Přebalovací pult</span></div>
+                                <div class="stop-note success"><span class="note-icon">✓</span>Nové, čisté!
+                                    Kvalitní
+                                    přebalovací
+                                    pult.</div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="">
+                            <div class="stop-km"><span class="km-number">248</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">EuroOil Křenovice</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ EuroOil</span></div>
+                            </div>
+                        </article>
                     </div>
-                </article>
-                <article class="stop-card" data-tags="shell">
-                    <div class="stop-km"><span class="km-number">44</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Shell Všechlapy</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Shell</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="orlen">
-                    <div class="stop-km"><span class="km-number">52</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Orlen</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Orlen</span></div>
-                    </div>
-                </article>
-                <article class="stop-card featured" data-tags="mekac kfc prebalovaci">
-                    <div class="stop-km"><span class="km-number">65</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Exit Ledeč - Velký komplex</h3>
-                        <p class="stop-description"><strong>NOVÉ KFC</strong> - čisto, ideální na přebalování!</p>
-                        <div class="stop-tags"><span class="tag tag-food">🍔 McDonald's</span><span
-                                class="tag tag-food">🍗 KFC</span><span class="tag tag-food">🥖 Boulevard</span><span
-                                class="tag tag-food">🍔 Burger King</span><span class="tag tag-baby">🍼 Přebalovací
-                                pult</span></div>
-                        <div class="stop-note success"><span class="note-icon">✓</span>Doporučujeme! Ideální místo pro
-                            delší zastávku s dětmi.</div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="">
-                    <div class="stop-km"><span class="km-number">89</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Motorest Humpolec</h3>
-                        <p class="stop-description">Exit Humpolec, žádná benzínka</p>
-                        <div class="stop-tags"><span class="tag tag-rest">🍽️ Motorest</span></div>
-                        <div class="stop-note warning"><span class="note-icon">!</span>Pozor: Žádná benzínka k
-                            dispozici.</div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="omv">
-                    <div class="stop-km"><span class="km-number">95</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">OMV</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="omv">
-                    <div class="stop-km"><span class="km-number">110</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">OMV Pávov</h3>
-                        <p class="stop-description">Krátký sjezd z dálnice do kopce</p>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="">
-                    <div class="stop-km"><span class="km-number">121</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Unicorn</h3>
-                        <p class="stop-description">Placené WC, malá benzínka</p>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Benzínka</span></div>
-                        <div class="stop-note warning"><span class="note-icon">!</span>Lépe se vyhnout - placené WC.
-                        </div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="shell mekac prebalovaci">
-                    <div class="stop-km"><span class="km-number">138</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Shell + McDonald's</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Shell</span><span class="tag tag-food">🍔
-                                McDonald's</span><span class="tag tag-baby">🍼 Malý přeb. pult</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="mol">
-                    <div class="stop-km"><span class="km-number">145</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Mol Velké Meziříčí</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Mol</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="orlen kfc prebalovaci">
-                    <div class="stop-km"><span class="km-number">166</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Devět křížů - Orlen + KFC</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Orlen</span><span class="tag tag-food">🍗
-                                KFC</span><span class="tag tag-baby">🍼 Přebalovací pult</span></div>
-                        <div class="stop-note info"><span class="note-icon">i</span>Přebalovací pult malý a nakřivo -
-                            doporučujeme přebalit ve dvou.</div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="mol">
-                    <div class="stop-km"><span class="km-number">187</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Mol Troubsko</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Mol</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="omv">
-                    <div class="stop-km"><span class="km-number">198</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">OMV Brno Ivanovice</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span></div>
-                    </div>
-                </article>
-                <article class="stop-card featured" data-tags="omv kfc mekac prebalovaci">
-                    <div class="stop-km"><span class="km-number">207</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">OMV Rohlenka</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span><span class="tag tag-food">🍗
-                                KFC</span><span class="tag tag-food">🍔 McDonald's</span><span class="tag tag-food">🥪
-                                Subway</span><span class="tag tag-baby">🍼 Přebalovací pult</span></div>
-                        <div class="stop-note info"><span class="note-icon">i</span>Malý přebalovací pult na invalidech.
-                        </div>
-                    </div>
-                </article>
-                <article class="stop-card featured" data-tags="shell kfc prebalovaci">
-                    <div class="stop-km"><span class="km-number">235</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Shell Slížany + KFC</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Shell</span><span class="tag tag-food">🍗
-                                KFC</span><span class="tag tag-baby">🍼 Přebalovací pult</span></div>
-                        <div class="stop-note success"><span class="note-icon">✓</span>Nové, čisté! Kvalitní přebalovací
-                            pult.</div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="">
-                    <div class="stop-km"><span class="km-number">248</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">EuroOil Křenovice</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ EuroOil</span></div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
+                </div>
 
-    <section class="stops-section stops-section-alt" id="smer-praha">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title"><span class="direction-badge direction-praha">←</span>Směr Praha</h2>
-                <p class="section-subtitle">Z Moravy do Prahy • 249 km</p>
-            </div>
-            <div class="stops-grid" id="stopsPraha">
-                <article class="stop-card" data-tags="">
-                    <div class="stop-km"><span class="km-number">249</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">EuroOil Křenovice</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ EuroOil</span></div>
+                <div class="stops-section" id="smer-praha">
+                    <div class="section-header">
+                        <h2 class="section-title"><span class="direction-badge direction-praha">←</span>Směr
+                            Praha</h2>
+                        <p class="section-subtitle">Z Moravy do Prahy • 249 km</p>
                     </div>
-                </article>
-                <article class="stop-card" data-tags="mol">
-                    <div class="stop-km"><span class="km-number">227</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Mol u Vyškova</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Mol</span></div>
+                    <div class="stops-grid" id="stopsPraha">
+                        <article class="stop-card" data-tags="">
+                            <div class="stop-km"><span class="km-number">249</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">EuroOil Křenovice</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ EuroOil</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="mol">
+                            <div class="stop-km"><span class="km-number">227</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Mol u Vyškova</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Mol</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="omv">
+                            <div class="stop-km"><span class="km-number">199</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">OMV Ivanovice</h3>
+                                <p class="stop-description">Sjezd přes most do protisměru</p>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="omv">
+                            <div class="stop-km"><span class="km-number">192</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">OMV Starý Lískovec</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="omv">
+                            <div class="stop-km"><span class="km-number">188</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">OMV + Burger King Troubsko</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span><span
+                                        class="tag tag-food">🍔
+                                        Burger King</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="shell">
+                            <div class="stop-km"><span class="km-number">185</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Shell</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Shell</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="orlen kfc prebalovaci">
+                            <div class="stop-km"><span class="km-number">165</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Devět křížů - Orlen + KFC</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Orlen</span><span
+                                        class="tag tag-food">🍗
+                                        KFC</span><span class="tag tag-baby">🍼 Přebalovací pult</span></div>
+                                <div class="stop-note success"><span class="note-icon">✓</span>Přebalovací pult
+                                    malý,
+                                    ale čistý!
+                                </div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="mekac shell">
+                            <div class="stop-km"><span class="km-number">146</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">McDonald's + Shell</h3>
+                                <div class="stop-tags"><span class="tag tag-food">🍔 McDonald's</span><span
+                                        class="tag tag-fuel">⛽ Shell</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="omv">
+                            <div class="stop-km"><span class="km-number">113</span><span class="km-label">km</span>
+                            </div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">OMV Pávov</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card featured" data-tags="mol prebalovaci">
+                            <div class="stop-km"><span class="km-number">95</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Mol Mikulášov</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Mol</span><span
+                                        class="tag tag-baby">🍼
+                                        Přebalovací místnost</span><span class="tag tag-kids">🧸 Dětský
+                                        koutek</span>
+                                </div>
+                                <div class="stop-note success"><span class="note-icon">✓</span>Prostorná
+                                    přebalovací
+                                    místnost s
+                                    pultem, dětský koutek a židlička!</div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="shell">
+                            <div class="stop-km"><span class="km-number">88</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Shell Humpolec</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Shell</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="omv">
+                            <div class="stop-km"><span class="km-number">72</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">OMV Dunice</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span></div>
+                                <div class="stop-note warning"><span class="note-icon">!</span>Malá stará
+                                    benzínka -
+                                    žádný
+                                    stoleček na jídlo.</div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="shell">
+                            <div class="stop-km"><span class="km-number">58</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Shell Kalná</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Shell</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="orlen kfc">
+                            <div class="stop-km"><span class="km-number">52</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Orlen + KFC</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Orlen</span><span
+                                        class="tag tag-food">🍗
+                                        KFC</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card featured" data-tags="omv prebalovaci">
+                            <div class="stop-km"><span class="km-number">30</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">OMV Naháč</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span><span
+                                        class="tag tag-baby">🍼
+                                        Velký přeb. pult</span></div>
+                                <div class="stop-note success"><span class="note-icon">✓</span>Nové! Velký
+                                    přebalovací
+                                    pult.
+                                </div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="shell">
+                            <div class="stop-km"><span class="km-number">10</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Shell</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Shell</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="mol mekac">
+                            <div class="stop-km"><span class="km-number">7</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Mol + McDonald's</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Mol</span><span
+                                        class="tag tag-food">🍔
+                                        McDonald's</span></div>
+                            </div>
+                        </article>
+                        <article class="stop-card" data-tags="orlen">
+                            <div class="stop-km"><span class="km-number">5</span><span class="km-label">km</span></div>
+                            <div class="stop-content">
+                                <h3 class="stop-title">Orlen</h3>
+                                <div class="stop-tags"><span class="tag tag-fuel">⛽ Orlen</span></div>
+                            </div>
+                        </article>
                     </div>
-                </article>
-                <article class="stop-card" data-tags="omv">
-                    <div class="stop-km"><span class="km-number">199</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">OMV Ivanovice</h3>
-                        <p class="stop-description">Sjezd přes most do protisměru</p>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="omv">
-                    <div class="stop-km"><span class="km-number">192</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">OMV Starý Lískovec</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="omv">
-                    <div class="stop-km"><span class="km-number">188</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">OMV + Burger King Troubsko</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span><span class="tag tag-food">🍔
-                                Burger King</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="shell">
-                    <div class="stop-km"><span class="km-number">185</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Shell</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Shell</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="orlen kfc prebalovaci">
-                    <div class="stop-km"><span class="km-number">165</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Devět křížů - Orlen + KFC</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Orlen</span><span class="tag tag-food">🍗
-                                KFC</span><span class="tag tag-baby">🍼 Přebalovací pult</span></div>
-                        <div class="stop-note success"><span class="note-icon">✓</span>Přebalovací pult malý, ale čistý!
-                        </div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="mekac shell">
-                    <div class="stop-km"><span class="km-number">146</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">McDonald's + Shell</h3>
-                        <div class="stop-tags"><span class="tag tag-food">🍔 McDonald's</span><span
-                                class="tag tag-fuel">⛽ Shell</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="omv">
-                    <div class="stop-km"><span class="km-number">113</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">OMV Pávov</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span></div>
-                    </div>
-                </article>
-                <article class="stop-card featured" data-tags="mol prebalovaci">
-                    <div class="stop-km"><span class="km-number">95</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Mol Mikulášov</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Mol</span><span class="tag tag-baby">🍼
-                                Přebalovací místnost</span><span class="tag tag-kids">🧸 Dětský koutek</span></div>
-                        <div class="stop-note success"><span class="note-icon">✓</span>Prostorná přebalovací místnost s
-                            pultem, dětský koutek a židlička!</div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="shell">
-                    <div class="stop-km"><span class="km-number">88</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Shell Humpolec</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Shell</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="omv">
-                    <div class="stop-km"><span class="km-number">72</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">OMV Dunice</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span></div>
-                        <div class="stop-note warning"><span class="note-icon">!</span>Malá stará benzínka - žádný
-                            stoleček na jídlo.</div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="shell">
-                    <div class="stop-km"><span class="km-number">58</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Shell Kalná</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Shell</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="orlen kfc">
-                    <div class="stop-km"><span class="km-number">52</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Orlen + KFC</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Orlen</span><span class="tag tag-food">🍗
-                                KFC</span></div>
-                    </div>
-                </article>
-                <article class="stop-card featured" data-tags="omv prebalovaci">
-                    <div class="stop-km"><span class="km-number">30</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">OMV Naháč</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ OMV</span><span class="tag tag-baby">🍼
-                                Velký přeb. pult</span></div>
-                        <div class="stop-note success"><span class="note-icon">✓</span>Nové! Velký přebalovací pult.
-                        </div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="shell">
-                    <div class="stop-km"><span class="km-number">10</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Shell</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Shell</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="mol mekac">
-                    <div class="stop-km"><span class="km-number">7</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Mol + McDonald's</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Mol</span><span class="tag tag-food">🍔
-                                McDonald's</span></div>
-                    </div>
-                </article>
-                <article class="stop-card" data-tags="orlen">
-                    <div class="stop-km"><span class="km-number">5</span><span class="km-label">km</span></div>
-                    <div class="stop-content">
-                        <h3 class="stop-title">Orlen</h3>
-                        <div class="stop-tags"><span class="tag tag-fuel">⛽ Orlen</span></div>
-                    </div>
-                </article>
+                </div>
             </div>
         </div>
     </section>
@@ -404,19 +483,23 @@
                     <span class="story-label">Náš příběh</span>
                     <h2 class="story-title">Proč jsme vytvořili Zástavky D1?</h2>
                     <div class="story-body">
-                        <p>Jako rodiče dvou malých dětí jezdíme pravidelně z Prahy na Moravu za babičkou. Cesta dlouhá
-                            přes 200 kilometrů s batolaty vyžaduje pečlivé plánování - přebalování, krmení, protažení
+                        <p>Jako rodiče dvou malých dětí jezdíme pravidelně z Prahy na Moravu za babičkou. Cesta
+                            dlouhá
+                            přes 200 kilometrů s batolaty vyžaduje pečlivé plánování - přebalování, krmení,
+                            protažení
                             nohou...</p>
-                        <p>Po mnoha cestách, kdy jsme ztráceli čas hledáním vhodného místa na zastávku, jsme se rozhodli
-                            zmapovat všechny benzínky a odpočívadla na D1. <strong>Věříme, že tento průvodce pomůže i
+                        <p>Po mnoha cestách, kdy jsme ztráceli čas hledáním vhodného místa na zastávku, jsme se
+                            rozhodli
+                            zmapovat všechny benzínky a odpočívadla na D1. <strong>Věříme, že tento průvodce
+                                pomůže i
                                 dalším rodinám s dětmi</strong> udělat jejich cesty příjemnější.</p>
-                        <p>Každé místo jsme osobně navštívili a zhodnotili z pohledu rodičů. Zaměřili jsme se hlavně na:
+                        <p>Každé místo jsme osobně navštívili a zhodnotili z pohledu rodičů. Zaměřili jsme se
+                            hlavně na:
                         </p>
                         <ul class="story-list">
                             <li>🍼 Dostupnost a kvalitu přebalovacích pultů</li>
-                            <li>🍽️ Možnosti stravování pro celou rodinu</li>
-                            <li>🧸 Dětské koutky a prostor pro děti</li>
-                            <li>🚗 Pohodlnost sjezdu a parkování</li>
+                            <li>⛽ Jaká benzínka je na místě k dispozici</li>
+                            <li>🍔 Možnosti rychlého občerstvení</li>
                         </ul>
                     </div>
                 </div>
@@ -435,32 +518,32 @@
             <h2 class="section-title">💡 Tipy na cestu s dětmi</h2>
             <div class="tips-grid">
                 <div class="tip-card">
-                    <div class="tip-icon">⏰</div>
+                    <img src="images/icon-clock.svg" alt="" class="tip-icon">
                     <h3>Plánujte zastávky</h3>
                     <p>S malými dětmi doporučujeme zastávku každých 60-90 minut.</p>
                 </div>
                 <div class="tip-card">
-                    <div class="tip-icon">🎒</div>
+                    <img src="images/icon-bag.svg" alt="" class="tip-icon">
                     <h3>Přebalovací taška</h3>
                     <p>Mějte připravenou malou tašku s přebalovacími potřebami.</p>
                 </div>
                 <div class="tip-card">
-                    <div class="tip-icon">🍼</div>
+                    <img src="images/icon-snack.svg" alt="" class="tip-icon">
                     <h3>Svačinky v autě</h3>
                     <p>Připravte si zdravé svačinky a pití předem.</p>
                 </div>
                 <div class="tip-card">
-                    <div class="tip-icon">📱</div>
+                    <img src="images/icon-phone.svg" alt="" class="tip-icon">
                     <h3>Offline mapy</h3>
                     <p>Stáhněte si offline mapy pro případ špatného signálu.</p>
                 </div>
                 <div class="tip-card">
-                    <div class="tip-icon">🚗</div>
+                    <img src="images/icon-sunrise.svg" alt="" class="tip-icon">
                     <h3>Vyjeďte brzy</h3>
                     <p>Ranní hodiny jsou ideální - méně provozu.</p>
                 </div>
                 <div class="tip-card">
-                    <div class="tip-icon">🎮</div>
+                    <img src="images/icon-game.svg" alt="" class="tip-icon">
                     <h3>Zábava pro děti</h3>
                     <p>Připravte aktivity do auta - knížky, hry, pohádky.</p>
                 </div>
@@ -471,7 +554,8 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-brand"><span class="logo-icon">🛣️</span><span class="logo-text">Zástavky D1</span>
+                <div class="footer-brand"><img src="favicon.svg" alt="Logo" class="logo-icon"><span
+                        class="logo-text">Zástavky D1</span>
                     <p class="footer-tagline">Průvodce benzínkami pro rodiny s dětmi</p>
                 </div>
                 <div class="footer-links">
@@ -485,7 +569,8 @@
                 </div>
                 <div class="footer-info">
                     <h4>O projektu</h4>
-                    <p>Tento projekt vznikl z lásky k cestování a touhy pomoci dalším rodinám. Je to open-source projekt
+                    <p>Tento projekt vznikl z lásky k cestování a touhy pomoci dalším rodinám. Je to open-source
+                        projekt
                         dostupný na GitHubu.</p><a href="https://github.com/bigtcze/zastavky_d1" class="github-link"
                         target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20"
                             fill="currentColor">
