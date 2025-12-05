@@ -1,7 +1,6 @@
 // Zástavky D1 - JavaScript
 document.addEventListener('DOMContentLoaded', function () {
     // Theme Toggle - Pill Switch
-    const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
     const options = document.querySelectorAll('.theme-toggle-option');
 
@@ -9,17 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const savedTheme = localStorage.getItem('theme') || 'light';
     if (savedTheme === 'dark') {
         html.setAttribute('data-theme', 'dark');
-        updateActiveOption('dark');
-    }
-
-    function updateActiveOption(theme) {
-        options.forEach(opt => {
-            if (opt.dataset.theme === theme) {
-                opt.classList.add('active');
-            } else {
-                opt.classList.remove('active');
-            }
-        });
     }
 
     options.forEach(option => {
@@ -32,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 html.removeAttribute('data-theme');
                 localStorage.setItem('theme', 'light');
             }
-            updateActiveOption(selectedTheme);
         });
     });
 

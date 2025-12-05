@@ -98,48 +98,77 @@ ul {
 .theme-toggle {
     display: flex;
     align-items: center;
-    gap: 4px;
     padding: 4px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
+    background: #e5e7eb;
     border-radius: 50px;
     cursor: pointer;
     transition: var(--transition);
 }
 
+[data-theme="dark"] .theme-toggle {
+    background: #1f2937;
+}
+
 .theme-toggle:hover {
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3);
 }
 
 .theme-toggle-track {
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 0;
 }
 
 .theme-toggle-option {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    font-size: 1rem;
     transition: var(--transition);
+    cursor: pointer;
 }
 
-.theme-toggle-option.active {
+.theme-icon {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Light mode default - sun is active */
+.theme-toggle-option[data-theme="light"] {
     background: var(--accent-gradient);
+    color: white;
     box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
 }
 
-.theme-toggle-option:not(.active) {
-    color: var(--text-muted);
+.theme-toggle-option[data-theme="dark"] {
+    color: #6b7280;
 }
 
-.theme-toggle-option:not(.active):hover {
-    color: var(--text-primary);
+.theme-toggle-option[data-theme="dark"]:hover {
+    color: #374151;
+}
+
+/* Dark mode - moon is active */
+[data-theme="dark"] .theme-toggle-option[data-theme="light"] {
+    background: transparent;
+    color: #6b7280;
+    box-shadow: none;
+}
+
+[data-theme="dark"] .theme-toggle-option[data-theme="light"]:hover {
+    color: #9ca3af;
+}
+
+[data-theme="dark"] .theme-toggle-option[data-theme="dark"] {
+    background: var(--accent-gradient);
+    color: white;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
 }
 
 /* Navbar */
