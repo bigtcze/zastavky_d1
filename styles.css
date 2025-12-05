@@ -221,6 +221,12 @@ ul {
     color: var(--text-primary);
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
 .mobile-menu-btn {
     display: none;
     flex-direction: column;
@@ -901,13 +907,6 @@ ul {
 
     .mobile-menu-btn {
         display: flex;
-    }
-
-    .theme-toggle {
-        position: absolute;
-        right: 60px;
-        top: 50%;
-        transform: translateY(-50%);
     }
 
     .hero-stats {

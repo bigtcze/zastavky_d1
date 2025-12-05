@@ -10,9 +10,23 @@ document.addEventListener('DOMContentLoaded', function () {
         html.setAttribute('data-theme', 'dark');
     }
 
+    // Set initial active state based on saved theme
+    options.forEach(option => {
+        if (option.dataset.theme === savedTheme) {
+            option.classList.add('active');
+        } else {
+            option.classList.remove('active');
+        }
+    });
+
     options.forEach(option => {
         option.addEventListener('click', function () {
             const selectedTheme = this.dataset.theme;
+
+            // Update active state on toggle options
+            options.forEach(opt => opt.classList.remove('active'));
+            this.classList.add('active');
+
             if (selectedTheme === 'dark') {
                 html.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
