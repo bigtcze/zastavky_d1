@@ -94,28 +94,52 @@ ul {
     padding: 0 20px;
 }
 
-/* Theme Toggle Button */
+/* Theme Toggle - Modern Pill Switch */
 .theme-toggle {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    background: var(--bg-card);
+    gap: 4px;
+    padding: 4px;
+    background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: 50px;
     cursor: pointer;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
     transition: var(--transition);
 }
 
 .theme-toggle:hover {
     border-color: var(--accent-primary);
-    color: var(--text-primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
-.theme-toggle-icon {
+.theme-toggle-track {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.theme-toggle-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
     font-size: 1rem;
+    transition: var(--transition);
+}
+
+.theme-toggle-option.active {
+    background: var(--accent-gradient);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+}
+
+.theme-toggle-option:not(.active) {
+    color: var(--text-muted);
+}
+
+.theme-toggle-option:not(.active):hover {
+    color: var(--text-primary);
 }
 
 /* Navbar */
@@ -923,7 +947,12 @@ ul {
     }
 
     .theme-toggle {
-        padding: 6px 10px;
-        font-size: 0.75rem;
+        padding: 3px;
+    }
+
+    .theme-toggle-option {
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
     }
 }

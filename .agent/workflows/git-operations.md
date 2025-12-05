@@ -14,9 +14,17 @@ The agent has permission to perform git operations directly without asking for u
 4. `git pull` - Pull latest changes
 5. `git status` - Check status
 
+## GitHub CLI (gh)
+
+6. `gh release create vX.X.X --title "vX.X.X" --notes "Release notes"` - Create a new release
+7. `gh release list` - List releases
+8. `gh pr create` - Create pull request
+9. `gh issue create` - Create issue
+
 ## Guidelines
 
 - Use descriptive commit messages in English
 - Commit related changes together
 - Push after completing a feature or fix
 - Always ensure code is tested before pushing
+- Use semantic versioning for releases (vMAJOR.MINOR.PATCH)

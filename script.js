@@ -1,36 +1,40 @@
 // Zástavky D1 - JavaScript
 document.addEventListener('DOMContentLoaded', function () {
-    // Theme Toggle
+    // Theme Toggle - Pill Switch
     const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
+    const options = document.querySelectorAll('.theme-toggle-option');
 
     // Check for saved theme preference or default to light
     const savedTheme = localStorage.getItem('theme') || 'light';
     if (savedTheme === 'dark') {
         html.setAttribute('data-theme', 'dark');
-        updateThemeIcon(true);
+        updateActiveOption('dark');
     }
 
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function () {
-            const isDark = html.getAttribute('data-theme') === 'dark';
-            if (isDark) {
-                html.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
+    function updateActiveOption(theme) {
+        options.forEach(opt => {
+            if (opt.dataset.theme === theme) {
+                opt.classList.add('active');
             } else {
-                html.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
+                opt.classList.remove('active');
             }
-            updateThemeIcon(!isDark);
         });
     }
 
-    function updateThemeIcon(isDark) {
-        const icon = document.querySelector('.theme-toggle-icon');
-        const text = document.querySelector('.theme-toggle-text');
-        if (icon) icon.textContent = isDark ? '☀️' : '🌙';
-        if (text) text.textContent = isDark ? 'Světlý' : 'Tmavý';
-    }
+    options.forEach(option => {
+        option.addEventListener('click', function () {
+            const selectedTheme = this.dataset.theme;
+            if (selectedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            }
+            updateActiveOption(selectedTheme);
+        });
+    });
 
     // Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -87,11 +91,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Navbar scroll effect - respects theme
+    // Navbar scroll effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset > 100;
-        navbar.style.boxShadow = scrolled ? 'var(--shadow)' : 'none';
+        navbar.style.boxShadow = window.pageYOffset > 100 ? 'var(--shadow)' : 'none';
     });
 
     // Animation on scroll
@@ -114,11 +117,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Placeholder images
     const heroImage = document.getElementById('heroImage');
     const storyImage = document.getElementById('storyImage');
-    function createPlaceholder(text, isDark) {
+    function createPlaceholder(text) {
+        const isDark = html.getAttribute('data-theme') === 'dark';
         const bg = isDark ? '#111' : '#f5f5f7';
         const fg = isDark ? '#333' : '#ccc';
         return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><rect fill="${bg}" width="800" height="600"/><text x="400" y="300" text-anchor="middle" fill="${fg}" font-family="Inter, sans-serif" font-size="24">${text}</text></svg>`)}`;
     }
-    if (heroImage) heroImage.onerror = function () { this.src = createPlaceholder('🚗 Zástavky D1', false); };
-    if (storyImage) storyImage.onerror = function () { this.src = createPlaceholder('👨‍👩‍👧‍👦 Rodinný výlet', false); };
+    if (heroImage) heroImage.onerror = function () { this.src = createPlaceholder('🚗 Zástavky D1'); };
+    if (storyImage) storyImage.onerror = function () { this.src = createPlaceholder('👨‍👩‍👧‍👦 Rodinný výlet'); };
 });
